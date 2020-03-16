@@ -53,6 +53,7 @@ namespace RepairIconOverlay
 
             yield return new BackupRegistryKeys();
             yield return new RepairIconOverlayRegistryKeys();
+            yield return new RestartExplorerProcess();
         }
 
         private void DisplayHelpText()

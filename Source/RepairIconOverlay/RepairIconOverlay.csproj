@@ -81,6 +81,7 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\CreateNewConfigurationFile.cs" />
     <Compile Include="Commands\RepairIconOverlayRegistryKeys.cs" />
+    <Compile Include="Commands\RestartExplorerProcess.cs" />
     <Compile Include="ConfigurationSerializer.cs" />
     <Compile Include="ConsoleDisplay.cs" />
     <Compile Include="Model\Configuration.cs" />

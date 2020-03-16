@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace RepairIconOverlay
 {
@@ -11,6 +8,13 @@ namespace RepairIconOverlay
         static void Main(string[] args)
         {
             new App(new ConsoleDisplay()).Run(args);
+#if DEBUG
+            if (Debugger.IsAttached)
+            {
+                Console.WriteLine("DEBUG: Press any key to exit");
+                Console.ReadKey();
+            }
+#endif
         }
     }
 }

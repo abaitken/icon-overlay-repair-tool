@@ -1,22 +1,42 @@
 ﻿using RepairIconOverlay.Model;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace RepairIconOverlay
 {
     class ConfigurationSerializer
     {
+        private readonly XmlSerializer _serializer;
+
+        public ConfigurationSerializer()
+        {
+            _serializer = new XmlSerializer(typeof(Configuration));
+        }
+
         public void Write(string filename, Configuration obj)
         {
-            var serializer = new XmlSerializer(typeof(Configuration));
             using (var writer = new StreamWriter(filename))
             {
-                serializer.Serialize(writer, obj);
+                _serializer.Serialize(writer, obj);
+            }
+        }
+
+        public Configuration Read(string filename)
+        {
+            var headerSerializer = new XmlSerializer(typeof(ConfigurationHeader));
+
+            using (var reader = new StreamReader(filename))
+            {
+                var header = (ConfigurationHeader)headerSerializer.Deserialize(reader);
+
+                if (header.Version != Configuration.SchemaVersion)
+                    throw new InvalidOperationException("Configuration file schema version was an unexpected value");
+            }
+
+            using (var reader = new StreamReader(filename))
+            {
+                return (Configuration)_serializer.Deserialize(reader);
             }
         }
     }

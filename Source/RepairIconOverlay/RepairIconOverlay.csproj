@@ -76,6 +76,9 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppInfo.cs" />
+    <Compile Include="IShellIconOverlayIdentifiers.cs" />
+    <Compile Include="Model\ShellIconOverlayIdentifier.cs" />
+    <Compile Include="ShellIconOverlayIdentifiers.cs" />
     <Compile Include="CommandLineParser.cs" />
     <Compile Include="Commands\BackupRegistryKeys.cs" />
     <Compile Include="Commands\ICommand.cs" />

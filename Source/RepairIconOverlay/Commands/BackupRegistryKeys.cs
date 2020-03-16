@@ -14,7 +14,7 @@ namespace RepairIconOverlay.Commands
             var backupFile = $"{datestring}.reg";
             console.WriteLine($"Creating registry backup: {backupFile}");
 
-            var registryKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers";
+            var registryKey = $@"HKEY_LOCAL_MACHINE\{ShellIconOverlayIdentifiers.KeyPath}";
             var commandLineArguments = $@"export {registryKey} {backupFile}";
 
             var fullPath = Path.GetFullPath(configurationFile);
@@ -24,6 +24,15 @@ namespace RepairIconOverlay.Commands
             var success = (result == 0);
             if (!success)
                 console.WriteError("Backup process failed");
+            
+            if (success)
+            {
+                var backupFullPath = Path.Combine(workingDirectory, backupFile);
+                success = File.Exists(backupFullPath);
+                if (!success)
+                    console.WriteError("Backup process failed. Could not find backup file.");
+            }
+
 
             return success;
         }

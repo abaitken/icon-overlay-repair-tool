@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1">
+  <Sets>
+    <KeySet>
+      <Rank>3</Rank>
+      <Keys>
+        <string>Tortoise1Normal</string>
+        <string>Tortoise2Modified</string>
+        <string>Tortoise3Conflict</string>
+        <string>Tortoise4Locked</string>
+        <string>Tortoise5ReadOnly</string>
+        <string>Tortoise6Deleted</string>
+        <string>Tortoise7Added</string>
+        <string>Tortoise8Ignored</string>
+        <string>Tortoise9Unversioned</string>
+      </Keys>
+    </KeySet>
+    <KeySet>
+      <Rank>2</Rank>
+      <Keys>
+        <string>DropboxExt01</string>
+        <string>DropboxExt02</string>
+        <string>DropboxExt03</string>
+        <string>DropboxExt04</string>
+        <string>DropboxExt05</string>
+        <string>DropboxExt06</string>
+        <string>DropboxExt07</string>
+        <string>DropboxExt08</string>
+        <string>DropboxExt09</string>
+        <string>DropboxExt10</string>
+      </Keys>
+    </KeySet>
+    <KeySet>
+      <Rank>1</Rank>
+      <Keys>
+        <string>OneDrive1</string>
+        <string>OneDrive2</string>
+        <string>OneDrive3</string>
+        <string>OneDrive4</string>
+        <string>OneDrive5</string>
+        <string>OneDrive6</string>
+        <string>OneDrive7</string>
+      </Keys>
+    </KeySet>
+    <KeySet>
+      <Rank>0</Rank>
+      <Keys>
+        <string>EnhancedStorageShell</string>
+        <string>Offline Files</string>
+      </Keys>
+    </KeySet>
+  </Sets>
+</Configuration>

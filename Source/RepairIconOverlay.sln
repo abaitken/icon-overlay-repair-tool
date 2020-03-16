@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairIconOverlay", "Repair
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairIconOverlay.Tests", "RepairIconOverlay.Tests\RepairIconOverlay.Tests.csproj", "{5D7D14C7-0692-46C6-8433-42FA2ED2EE98}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdditionalItems", "AdditionalItems", "{DB3CBAEB-FD7B-4BCB-9626-4DDAA48F4EE3}"
+	ProjectSection(SolutionItems) = preProject
+		..\ExampleConfiguration.xml = ..\ExampleConfiguration.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

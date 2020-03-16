@@ -29,7 +29,6 @@ namespace RepairIconOverlay.Model
         public int Version { get; set; }
 
         public List<KeySet> Sets { get; set; }
-        public bool DeleteDuplicates { get; set; }
     }
 
     public class KeySet

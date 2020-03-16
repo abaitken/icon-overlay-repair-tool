@@ -1,4 +1,5 @@
 ﻿using RepairIconOverlay.Commands;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -35,9 +36,18 @@ namespace RepairIconOverlay
 
             var commands = CreateCommands(commandLineParser, configurationFile);
 
-            foreach (var command in commands)
-                if (!command.Execute(_console, configurationFile))
-                    break;
+            try
+            {
+                foreach (var command in commands)
+                    if (!command.Execute(_console, configurationFile))
+                        break;
+            }
+            catch (Exception ex)
+            {
+                _console.WriteError("An exception has been thrown:");
+                _console.WriteError($@"{ex.Message}
+{ex.StackTrace}");
+            }
         }
 
         private IEnumerable<ICommand> CreateCommands(CommandLineParser commandLineParser, string configurationFile)
@@ -54,9 +64,7 @@ namespace RepairIconOverlay
                 yield break;
             }
 
-            yield return new BackupRegistryKeys();
-            yield return new RepairIconOverlayRegistryKeys();
-            yield return new RestartExplorerProcess();
+            yield return new RepairIconOverlayRegistryKeys(new ShellIconOverlayIdentifiers());
         }
 
         private void DisplayHelpText()
@@ -65,7 +73,8 @@ namespace RepairIconOverlay
             {
                 new { Commands = "h,?", Text = "This help" },
                 new { Commands = "c", Text = "Configuration file" },
-                new { Commands = "n", Text = "Create new configuration file based on current registry keys" }
+                new { Commands = "n", Text = "Create new configuration file based on current registry keys" },
+                //new { Commands = "u", Text = "Update configuration file based on current registry keys" } // TODO : Implement update command
             };
 
             const int maxSpacing = 6;

@@ -31,23 +31,23 @@ namespace RepairIconOverlay
                 return;
             }
 
-            if(!File.Exists(configurationFile))
-            {
-                _console.WriteError("Configuration file not found!");
-                return;
-            }
-
-            var commands = CreateCommands(commandLineParser);
+            var commands = CreateCommands(commandLineParser, configurationFile);
 
             foreach (var command in commands)
                 command.Execute(_console, configurationFile);
         }
 
-        private IEnumerable<ICommand> CreateCommands(CommandLineParser commandLineParser)
+        private IEnumerable<ICommand> CreateCommands(CommandLineParser commandLineParser, string configurationFile)
         {
             if(commandLineParser.ContainsCommand('n'))
             {
                 yield return new CreateNewConfigurationFile();
+                yield break;
+            }
+
+            if (!File.Exists(configurationFile))
+            {
+                _console.WriteError("Configuration file not found!");
                 yield break;
             }
 

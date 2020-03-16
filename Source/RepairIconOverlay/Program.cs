@@ -5,9 +5,9 @@ namespace RepairIconOverlay
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
-            new App(new ConsoleDisplay()).Run(args);
+            var exitCode = new App(new ConsoleDisplay()).Run(args);
 #if DEBUG
             if (Debugger.IsAttached)
             {
@@ -15,6 +15,8 @@ namespace RepairIconOverlay
                 Console.ReadKey();
             }
 #endif
+
+            return exitCode;
         }
     }
 }

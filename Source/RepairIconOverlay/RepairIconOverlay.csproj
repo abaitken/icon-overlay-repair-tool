@@ -76,6 +76,9 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppInfo.cs" />
+    <Compile Include="Commands\ValidateConfiguration.cs" />
+    <Compile Include="Exceptions\ConfigurationSchemaVersionException.cs" />
+    <Compile Include="ExitCodes.cs" />
     <Compile Include="IShellIconOverlayIdentifiers.cs" />
     <Compile Include="Model\ShellIconOverlayIdentifier.cs" />
     <Compile Include="RegistryKeyExtensions.cs" />

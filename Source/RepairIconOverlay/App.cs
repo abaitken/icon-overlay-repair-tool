@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using RepairIconOverlay.Commands;
+﻿using RepairIconOverlay.Commands;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,24 +14,24 @@ namespace RepairIconOverlay
             _console = consoleDisplay;
         }
 
-        internal void Run(string[] args)
+        internal int Run(string[] args)
         {
             DisplayAppInfo();
 
-            if(!new ShellIconOverlayIdentifiers().CheckKeyAccess(out var errorMessage))
+            if (!new ShellIconOverlayIdentifiers().CheckKeyAccess(out var errorMessage))
             {
                 _console.WriteError(errorMessage);
                 _console.WriteLine("Consider running with elevated permissions.");
                 _console.WriteLine();
-                return;
+                return ExitCodes.Error;
             }
 
             var commandLineParser = new CommandLineParser(args);
-            
-            if(commandLineParser.Count == 0 || commandLineParser.ContainsCommand('h', '?'))
+
+            if (commandLineParser.Count == 0 || commandLineParser.ContainsCommand('h', '?'))
             {
                 DisplayHelpText();
-                return;
+                return ExitCodes.Error;
             }
 
             var configurationFileSpecified = commandLineParser.GetCommandParameter('c', out var configurationFile);
@@ -40,16 +39,19 @@ namespace RepairIconOverlay
             {
                 _console.WriteError("Configuration file must be specified!");
                 _console.WriteLine();
-                return;
+                return ExitCodes.Error;
             }
 
-            var commands = CreateCommands(commandLineParser, configurationFile);
+            var commands = CreateCommands(commandLineParser);
 
             try
             {
                 foreach (var command in commands)
                     if (!command.Execute(_console, configurationFile))
-                        break;
+                    {
+                        _console.WriteLine();
+                        return ExitCodes.Error;
+                    }
             }
             catch (Exception ex)
             {
@@ -58,22 +60,18 @@ namespace RepairIconOverlay
 {ex.StackTrace}");
             }
             _console.WriteLine();
+            return ExitCodes.OK;
         }
 
-        private IEnumerable<ICommand> CreateCommands(CommandLineParser commandLineParser, string configurationFile)
+        private IEnumerable<ICommand> CreateCommands(CommandLineParser commandLineParser)
         {
-            if(commandLineParser.ContainsCommand('n'))
+            if (commandLineParser.ContainsCommand('n'))
             {
                 yield return new CreateNewConfigurationFile();
                 yield break;
             }
 
-            if (!File.Exists(configurationFile))
-            {
-                _console.WriteError("Configuration file not found!");
-                yield break;
-            }
-
+            yield return new ValidateConfiguration();
             yield return new RepairIconOverlayRegistryKeys(new ShellIconOverlayIdentifiers());
         }
 
@@ -92,6 +90,20 @@ namespace RepairIconOverlay
             {
                 var spacing = new string(' ', maxSpacing - item.Commands.Length);
                 _console.WriteLine($"{item.Commands}{spacing}{item.Text}");
+            }
+
+            _console.WriteLine();
+
+            var exitCodes = new[]
+            {
+                new { ExitCode = ExitCodes.OK, Text = "OK" },
+                new { ExitCode = ExitCodes.Error, Text = "Error" },
+            };
+
+            foreach (var item in exitCodes)
+            {
+                var spacing = new string(' ', maxSpacing - item.ExitCode.ToString().Length);
+                _console.WriteLine($"{item.ExitCode}{spacing}{item.Text}");
             }
 
             _console.WriteLine();

@@ -1,4 +1,5 @@
-﻿using RepairIconOverlay.Model;
+﻿using RepairIconOverlay.Exceptions;
+using RepairIconOverlay.Model;
 using System;
 using System.IO;
 using System.Xml.Serialization;
@@ -31,7 +32,7 @@ namespace RepairIconOverlay
                 var header = (ConfigurationHeader)headerSerializer.Deserialize(reader);
 
                 if (header.Version != Configuration.SchemaVersion)
-                    throw new InvalidOperationException("Configuration file schema version was an unexpected value");
+                    throw new ConfigurationSchemaVersionException();
             }
 
             using (var reader = new StreamReader(filename))

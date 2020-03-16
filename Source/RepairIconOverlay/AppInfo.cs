@@ -16,5 +16,6 @@ namespace RepairIconOverlay
         public string Copyright => _assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright;
         public string Trademark => _assembly.GetCustomAttribute<AssemblyTrademarkAttribute>().Trademark;
         public string Version => _assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
+        public string Company => _assembly.GetCustomAttribute<AssemblyCompanyAttribute>().Company;
     }
 }

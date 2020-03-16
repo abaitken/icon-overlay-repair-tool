@@ -91,6 +91,7 @@ namespace RepairIconOverlay
         {
             var info = new AppInfo();
             _console.WriteLine($"{info.Title} {info.Version}");
+            _console.WriteLine($"{info.Company} {info.Copyright}");
             _console.WriteLine(info.Description);
             _console.WriteLine();
         }

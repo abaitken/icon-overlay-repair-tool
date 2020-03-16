@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RepairIconOverlay")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Repair Icon Overlay Tool")]
+[assembly: AssemblyDescription("Updates ShellIconOverlayIdentifiers registry keys")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Alex Boyne-Aitken")]
 [assembly: AssemblyProduct("RepairIconOverlay")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]

@@ -37,7 +37,10 @@ namespace RepairIconOverlay
 
         public void Delete(ShellIconOverlayIdentifier duplicate)
         {
-            throw new NotImplementedException();
+            using (var shellIconOverlayIdentifiers = Registry.LocalMachine.OpenSubKey(KeyPath, true))
+            {
+                shellIconOverlayIdentifiers.DeleteSubKey(duplicate.OriginalName);
+            }
         }
 
         public void UpdateIdentifier(ShellIconOverlayIdentifier identifier, int newRank)

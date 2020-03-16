@@ -78,6 +78,7 @@
     <Compile Include="AppInfo.cs" />
     <Compile Include="IShellIconOverlayIdentifiers.cs" />
     <Compile Include="Model\ShellIconOverlayIdentifier.cs" />
+    <Compile Include="RegistryKeyExtensions.cs" />
     <Compile Include="ShellIconOverlayIdentifiers.cs" />
     <Compile Include="CommandLineParser.cs" />
     <Compile Include="Commands\BackupRegistryKeys.cs" />

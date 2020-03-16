@@ -38,14 +38,15 @@ namespace RepairIconOverlay
         public void Delete(ShellIconOverlayIdentifier duplicate)
         {
             using (var shellIconOverlayIdentifiers = Registry.LocalMachine.OpenSubKey(KeyPath, true))
-            {
                 shellIconOverlayIdentifiers.DeleteSubKey(duplicate.OriginalName);
-            }
         }
 
         public void UpdateIdentifier(ShellIconOverlayIdentifier identifier, int newRank)
         {
-            throw new NotImplementedException();
+            var indent = new string(' ', newRank);
+            var newName = $"{indent}{identifier.Name}";
+            using (var shellIconOverlayIdentifiers = Registry.LocalMachine.OpenSubKey(KeyPath, true))
+                shellIconOverlayIdentifiers.RenameSubKey(identifier.OriginalName, newName);
         }
     }
 }

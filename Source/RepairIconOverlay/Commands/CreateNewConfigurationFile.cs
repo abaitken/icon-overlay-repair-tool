@@ -23,15 +23,15 @@ namespace RepairIconOverlay.Commands
             using (var ShellIconOverlayIdentifiers = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers"))
             {
                 var names = ShellIconOverlayIdentifiers.GetSubKeyNames();
-                var nameIndents = from name in names
+                var rankedNames = from name in names
                                   select new
                                   {
                                       name = name.TrimStart(),
-                                      indent = CalculateIndex(name)
+                                      rank = CalculateRank(name)
                                   };
 
-                var sets = from name in nameIndents
-                           group name by name.indent into g
+                var sets = from name in rankedNames
+                           group name by name.rank into g
                            select new KeySet
                            {
                                Rank = g.Key,
@@ -42,7 +42,7 @@ namespace RepairIconOverlay.Commands
             }
         }
 
-        private int CalculateIndex(string name)
+        private int CalculateRank(string name)
         {
             for (int i = 0; i < name.Length; i++)
             {

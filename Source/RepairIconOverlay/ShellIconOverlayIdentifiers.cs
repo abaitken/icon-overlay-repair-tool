@@ -3,6 +3,7 @@ using RepairIconOverlay.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 
 namespace RepairIconOverlay
 {
@@ -17,6 +18,23 @@ namespace RepairIconOverlay
                 var identifiers = from name in names
                                   select CreateIdentifer(name, shellIconOverlayIdentifiers);
                 return identifiers.ToList();
+            }
+        }
+
+        internal bool CheckKeyAccess(out string errorMessage)
+        {
+            try
+            {
+                using (var shellIconOverlayIdentifiers = Registry.LocalMachine.OpenSubKey(KeyPath, true))
+                {
+                    errorMessage = null;
+                    return true;
+                }
+            }
+            catch (SecurityException ex)
+            {
+                errorMessage = ex.Message;
+                return false;
             }
         }
 

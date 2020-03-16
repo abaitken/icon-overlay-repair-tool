@@ -1,4 +1,5 @@
-﻿using RepairIconOverlay.Commands;
+﻿using Microsoft.Win32;
+using RepairIconOverlay.Commands;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +18,14 @@ namespace RepairIconOverlay
         internal void Run(string[] args)
         {
             DisplayAppInfo();
-            // TODO : Check for elevated privilages
+
+            if(!new ShellIconOverlayIdentifiers().CheckKeyAccess(out var errorMessage))
+            {
+                _console.WriteError(errorMessage);
+                _console.WriteLine("Consider running with elevated permissions.");
+                _console.WriteLine();
+                return;
+            }
 
             var commandLineParser = new CommandLineParser(args);
             
@@ -31,6 +39,7 @@ namespace RepairIconOverlay
             if (!configurationFileSpecified || string.IsNullOrWhiteSpace(configurationFile))
             {
                 _console.WriteError("Configuration file must be specified!");
+                _console.WriteLine();
                 return;
             }
 
@@ -48,6 +57,7 @@ namespace RepairIconOverlay
                 _console.WriteError($@"{ex.Message}
 {ex.StackTrace}");
             }
+            _console.WriteLine();
         }
 
         private IEnumerable<ICommand> CreateCommands(CommandLineParser commandLineParser, string configurationFile)

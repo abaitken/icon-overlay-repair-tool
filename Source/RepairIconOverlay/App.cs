@@ -1,7 +1,9 @@
 ﻿using RepairIconOverlay.Commands;
+using RepairIconOverlay.Display;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace RepairIconOverlay
 {
@@ -79,18 +81,17 @@ namespace RepairIconOverlay
         {
             var commands = new[]
             {
-                new { Commands = "h,?", Text = "This help" },
-                new { Commands = "c", Text = "Configuration file" },
-                new { Commands = "n", Text = "Create new configuration file based on current registry keys" },
+                new { Commands = "-h", Text = "Displays this help" },
+                new { Commands = "-c filepath", Text = "Specifies the configuration file" },
+                new { Commands = "-n", Text = "Create new configuration file based on current registry keys" },
                 //new { Commands = "u", Text = "Update configuration file based on current registry keys" } // TODO : Implement update command
             };
 
-            const int maxSpacing = 6;
-            foreach (var item in commands)
-            {
-                var spacing = new string(' ', maxSpacing - item.Commands.Length);
-                _console.WriteLine($"{item.Commands}{spacing}{item.Text}");
-            }
+            _console.WriteLine("Options:");
+
+            new ConsoleTable(_console).Write(commands.Select(i => i.Commands).ToArray(),
+                                             commands.Select(i => i.Text).ToArray(),
+                                             "   ", 3);
 
             _console.WriteLine();
 
@@ -100,11 +101,12 @@ namespace RepairIconOverlay
                 new { ExitCode = ExitCodes.Error, Text = "Error" },
             };
 
-            foreach (var item in exitCodes)
-            {
-                var spacing = new string(' ', maxSpacing - item.ExitCode.ToString().Length);
-                _console.WriteLine($"{item.ExitCode}{spacing}{item.Text}");
-            }
+            _console.WriteLine("Exit codes:");
+
+
+            new ConsoleTable(_console).Write(exitCodes.Select(i => i.ExitCode.ToString()).ToArray(),
+                                             exitCodes.Select(i => i.Text).ToArray(),
+                                             "   ", 3);
 
             _console.WriteLine();
         }
@@ -112,8 +114,10 @@ namespace RepairIconOverlay
         private void DisplayAppInfo()
         {
             var info = new AppInfo();
-            _console.WriteLine($"{info.Title} {info.Version}");
-            _console.WriteLine($"{info.Company} {info.Copyright}");
+            _console.WriteLine();
+            _console.WriteLine($"{info.Title} v{info.Version}");
+            _console.WriteLine($"{info.Company} - {info.Copyright}");
+            _console.WriteLine();
             _console.WriteLine(info.Description);
             _console.WriteLine();
         }

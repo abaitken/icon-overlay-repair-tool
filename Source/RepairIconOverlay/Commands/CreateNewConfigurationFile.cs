@@ -1,4 +1,5 @@
-﻿using RepairIconOverlay.Model;
+﻿using RepairIconOverlay.Display;
+using RepairIconOverlay.Model;
 using System.Linq;
 
 namespace RepairIconOverlay.Commands

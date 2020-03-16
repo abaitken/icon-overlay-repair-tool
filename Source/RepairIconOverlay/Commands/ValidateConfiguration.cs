@@ -1,4 +1,5 @@
-﻿using RepairIconOverlay.Exceptions;
+﻿using RepairIconOverlay.Display;
+using RepairIconOverlay.Exceptions;
 using System.IO;
 
 namespace RepairIconOverlay.Commands

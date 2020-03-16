@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using RepairIconOverlay.Display;
+using System.Diagnostics;
 
 namespace RepairIconOverlay
 {

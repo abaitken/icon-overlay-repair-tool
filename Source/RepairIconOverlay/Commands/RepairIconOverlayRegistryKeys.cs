@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RepairIconOverlay.Display;
 using RepairIconOverlay.Model;
 
 namespace RepairIconOverlay.Commands

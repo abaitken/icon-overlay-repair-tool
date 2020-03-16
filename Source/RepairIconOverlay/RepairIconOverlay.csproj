@@ -77,6 +77,8 @@
     <Compile Include="App.cs" />
     <Compile Include="AppInfo.cs" />
     <Compile Include="Commands\ValidateConfiguration.cs" />
+    <Compile Include="Display\ConsoleDisplay.cs" />
+    <Compile Include="Display\ConsoleTable.cs" />
     <Compile Include="Exceptions\ConfigurationSchemaVersionException.cs" />
     <Compile Include="ExitCodes.cs" />
     <Compile Include="IShellIconOverlayIdentifiers.cs" />
@@ -90,7 +92,6 @@
     <Compile Include="Commands\RepairIconOverlayRegistryKeys.cs" />
     <Compile Include="Commands\RestartExplorerProcess.cs" />
     <Compile Include="ConfigurationSerializer.cs" />
-    <Compile Include="ConsoleDisplay.cs" />
     <Compile Include="ExternalProcessHandler.cs" />
     <Compile Include="Model\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -100,5 +101,6 @@
     <None Include="App.config" />
     <None Include="RepairIconOverlay.snk" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

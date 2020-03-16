@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RepairIconOverlay
+namespace RepairIconOverlay.Display
 {
     internal class ConsoleDisplay
     {

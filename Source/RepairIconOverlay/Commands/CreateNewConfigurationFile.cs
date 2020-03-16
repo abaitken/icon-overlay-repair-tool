@@ -8,7 +8,7 @@ namespace RepairIconOverlay.Commands
 {
     class CreateNewConfigurationFile : ICommand
     {
-        public void Execute(ConsoleDisplay console, string configurationFile)
+        public bool Execute(ConsoleDisplay console, string configurationFile)
         {
             var configuration = new Configuration
             {
@@ -16,6 +16,7 @@ namespace RepairIconOverlay.Commands
             };
             var serializer = new ConfigurationSerializer();
             serializer.Write(configurationFile, configuration);
+            return true;
         }
 
         private List<KeySet> GetKeySets()

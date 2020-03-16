@@ -7,6 +7,6 @@ namespace RepairIconOverlay.Commands
 {
     interface ICommand
     {
-        void Execute(ConsoleDisplay console, string configurationFile);
+        bool Execute(ConsoleDisplay console, string configurationFile);
     }
 }

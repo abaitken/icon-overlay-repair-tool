@@ -84,6 +84,7 @@
     <Compile Include="Commands\RestartExplorerProcess.cs" />
     <Compile Include="ConfigurationSerializer.cs" />
     <Compile Include="ConsoleDisplay.cs" />
+    <Compile Include="ExternalProcessHandler.cs" />
     <Compile Include="Model\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

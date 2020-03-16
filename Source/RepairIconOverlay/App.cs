@@ -16,6 +16,8 @@ namespace RepairIconOverlay
         internal void Run(string[] args)
         {
             DisplayAppInfo();
+            // TODO : Check for elevated privilages
+
             var commandLineParser = new CommandLineParser(args);
             
             if(commandLineParser.Count == 0 || commandLineParser.ContainsCommand('h', '?'))
@@ -34,7 +36,8 @@ namespace RepairIconOverlay
             var commands = CreateCommands(commandLineParser, configurationFile);
 
             foreach (var command in commands)
-                command.Execute(_console, configurationFile);
+                if (!command.Execute(_console, configurationFile))
+                    break;
         }
 
         private IEnumerable<ICommand> CreateCommands(CommandLineParser commandLineParser, string configurationFile)

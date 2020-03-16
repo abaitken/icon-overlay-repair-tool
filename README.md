@@ -2,6 +2,8 @@
 
 Repairs the explorer icon overlays based on a given configuration file of desired rankings.
 
+A registry backup will be created in the same folder and the configuration file before any changes are made.
+
 ## Command line options
 
 ```

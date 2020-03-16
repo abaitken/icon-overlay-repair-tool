@@ -94,6 +94,8 @@ namespace RepairIconOverlay
                                              "   ", 3);
 
             _console.WriteLine();
+            _console.WriteLine("A registry backup will be created in the same folder and the configuration file before any changes are made.");
+            _console.WriteLine();
 
             var exitCodes = new[]
             {
